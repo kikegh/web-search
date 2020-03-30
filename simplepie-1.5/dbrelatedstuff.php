@@ -44,13 +44,14 @@
         else {
             $status = "Si se conecto, yay!";
             $sql = 'select * from website where url="'.$url.'"';
-            echo $sql;
+            //echo $sql;
             $resultado = $mysqli->query($sql);
             //echo $resultado;
             if($resultado->num_rows > 0){
                 $aValues = $resultado->fetch_array();
                 $info[0] = $aValues['tamanio'];
                 $info[1] = $aValues['ID'];
+
             }
             else {
                 $info[0] = "No se encontraron resultados";
@@ -74,7 +75,6 @@
         else {
             $contenido = $mysqli->real_escape_string($contenido);
             $sql = 'update website SET titulo="'.$titulo.'", palabras_clave="'.$palabras_clave.'", autor="'.$autor.'", contenido="'.$contenido.'", fecha="'.$fecha.'", url="'.$url.'", tamanio="'.$tamanio.'" where ID= '.$id;
-            echo $sql;
             //echo $sql;
             try{
                 $resultado = $mysqli->query($sql);
@@ -94,5 +94,69 @@
         echo $status;
         return $info;
         }
-    }    
+    }
+    
+    function deleteFromList(){
+        $info = "";
+        $status = "";
+
+        $mysqli = new mysqli('localhost','root','','buscador_oaw');
+        if(!$mysqli){
+            $status = "No se pudo realizar la conexión PHP - MySQL";
+        }
+        else {
+            $contenido = $mysqli->real_escape_string($contenido);
+            $sql = 'delete from website WHERE ID = '.id;
+            //echo $sql;
+            try{
+                $resultado = $mysqli->query($sql);
+            }catch (Exception $e) {
+                echo "Error: no se pudo eliminar". $e;
+            }
+        
+           
+            if($resultado){
+                $info = "Eliminado de la lista ;)";
+            }
+            else{
+                $info = "Algo salió mal, no se eliminó de la lista ;(";
+            }
+        $mysqli->close();
+
+        echo $status;
+        return $info;
+        }
+    }
+
+    function showList(){
+        $info = "";
+        $status = "";
+
+        $mysqli = new mysqli('localhost','root','','buscador_oaw');
+        if(!$mysqli){
+            $status = "No se pudo realizar la conexión PHP - MySQL";
+        }
+        else {
+            $contenido = $mysqli->real_escape_string($contenido);
+            $sql = 'select * from ';
+            //echo $sql;
+            try{
+                $resultado = $mysqli->query($sql);
+            }catch (Exception $e) {
+                echo "Error: no se pudo eliminar". $e;
+            }
+        
+           
+            if($resultado){
+                $info = "Eliminado de la lista ;)";
+            }
+            else{
+                $info = "Algo salió mal, no se eliminó de la lista ;(";
+            }
+        $mysqli->close();
+
+        echo $status;
+        return $info;
+        }
+    }
 ?>
