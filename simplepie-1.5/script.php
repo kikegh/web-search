@@ -28,20 +28,12 @@ $last_modified = "";
 if($resultados[0] == "No se encontraron resultados"){
     $crawler = $client->request('GET', $url);
 
-    /* try{
-        $crawler->filter('title')->each(function ($node){
-            $titulo = $node->text();
-            });
-        } catch (Exception $e){
+    try {
+        $titulo = $crawler->filterXpath('//meta[@name="title"]')->attr('content');
+        echo "Title: " . $titulo . '<br>'; 
+    } catch (Exception $e) {
         echo 'Excepción capturada: no se encontró el título';
-        } */
-   $crawler->filter('title')->each(function ($node) {
-        $titulo = $node->text();
-    });
-    /* $crawler->filter('meta[name = author]')->each(function ($node) {
-        echo "Autor: ".$node->text()."\n";
-    }); */
-
+    }
     try {
         $author =  $crawler->filterXpath('//meta[@name="Author"]')->attr('content');
         echo "Author: " . $author . '<br>'; 
@@ -77,7 +69,8 @@ if($resultados[0] == "No se encontraron resultados"){
 
 
     try {
-        $html_code = $crawler->html();
+        $body = $crawler->filter('body');
+        $html_code = $body->text();
         //echo "Contenido" . $html_code . '<br>';
         $tamanio_pag = strlen($html_code);
         echo "Tamaño de Contenido" . $tamanio_pag; 
