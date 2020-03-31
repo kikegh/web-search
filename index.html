@@ -1,24 +1,60 @@
 <html>
-    <head>
-        <title>Proyecto Final AAAAAA</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div id="container">
+
+<head>
+    <title>Proyecto Final AAAAAA</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="./js/tabs.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-light" style="background-color:rosybrown">
+        <a class="navbar-brand" href="#">Proyecto Final</a>
+    </nav>
+    <div id="container">
         <div id="nav-bar">
             <h2>Proyecto OAW</h2>
         </div>
-        <div id="side-bar">
-            <ul>
-                <li>Uso de un RSS</li>
-            </ul>
-        </div>
+
         <div id="content">
-            <form action="simplepie-1.5/script.php" method="POST">
-                <input name="url" type="text" placeholder="Insert Url here...">
-                <button type="submit">do something</button>
-            </form>
+
+            <div class="tab">
+                <button class="tablinks" onclick="openTab(event, 'tab1')">Editar lista</button>
+                <button class="tablinks" onclick="openTab(event, 'tab2')">Buscar</button>
+            </div>
+
+            <div id="tab1" class="tabcontent">
+                <form action="simplepie-1.5/script.php" method="POST">
+                    <section>Editar lista de urls
+                        <input name="url" type="text" placeholder="Insert Url here...">
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+                    </section>
+                    <div>[Aquí debería aparecer la lista de urls]</div>
+                </form>
+            </div>
+
+            <div id="tab2" class="tabcontent">
+                <form>
+                    <section>Realizar una busqueda
+                        <input name="url" type="text">
+                        <button type="submit" class="btn btn-primary">Buscar</button>
+                    </section>
+                </form>
+            </div>
         </div>
-        </div>
-    </body>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>
